@@ -69,7 +69,7 @@
             font-family: sans-serif;
         }
 
-        #PlayButton {
+        #PlayButton, #DownloadButton {
             display: block;
             margin: 20px auto;
             padding: 10px 20px;
@@ -88,6 +88,7 @@
         <textarea id="ResultsText" placeholder="Arduino code output..."></textarea>
     </div>
     <button id="PlayButton" disabled>Play MIDI</button>
+    <button id="DownloadButton" disabled>Download .ino</button>
 
     <script type="text/javascript">
         var myTextarea = document.getElementById("ResultsText");
@@ -122,13 +123,18 @@
         }
 
         let currentMidi = null;
+        let synths = [];
+        let playing = false;
+        let midiFileName = "";
 
         function parseFile(file) {
             const reader = new FileReader();
             reader.onload = function (e) {
                 const midi = new Midi(e.target.result);
+                midiFileName = file.name.split('.').slice(0, -1).join('.') + ".ino";
                 editor.setValue(generateArduinoCode(midi));
                 document.querySelector("#PlayButton").removeAttribute("disabled");
+                document.querySelector("#DownloadButton").removeAttribute("disabled");
                 currentMidi = midi;
             };
             reader.readAsArrayBuffer(file);
@@ -166,23 +172,53 @@ void loop() {
         }
 
         document.querySelector("#PlayButton").addEventListener("click", () => {
-            if (currentMidi) {
-                const synths = [];
-                const now = Tone.now() + 0.5;
-                currentMidi.tracks.forEach((track) => {
-                    const synth = new Tone.PolySynth(Tone.Synth, {
-                        envelope: {
-                            attack: 0.02,
-                            decay: 0.1,
-                            sustain: 0.3,
-                            release: 1,
-                        },
-                    }).toDestination();
-                    synths.push(synth);
-                    track.notes.forEach((note) => {
-                        synth.triggerAttackRelease(note.name, note.duration, note.time + now, note.velocity);
+            if (playing) {
+                // Stop playing
+                synths.forEach(synth => synth.disconnect());
+                synths = [];
+                document.querySelector("#PlayButton").textContent = "Play MIDI";
+                playing = false;
+            } else {
+                // Start playing
+                if (currentMidi) {
+                    const now = Tone.now() + 0.5;
+                    currentMidi.tracks.forEach((track) => {
+                        const synth = new Tone.PolySynth(Tone.Synth, {
+                            envelope: {
+                                attack: 0.02,
+                                decay: 0.1,
+                                sustain: 0.3,
+                                release: 1,
+                            },
+                        }).toDestination();
+                        synths.push(synth);
+                        track.notes.forEach((note) => {
+                            synth.triggerAttackRelease(note.name, note.duration, note.time + now, note.velocity);
+                        });
                     });
-                });
+                    document.querySelector("#PlayButton").textContent = "Stop MIDI";
+                    playing = true;
+                }
+            }
+        });
+
+        document.querySelector("#DownloadButton").addEventListener("click", () => {
+            const textToSave = editor.getValue();
+            const blob = new Blob([textToSave], { type: "text/plain" });
+            const link = document.createElement("a");
+            link.download = midiFileName;
+            link.href = URL.createObjectURL(blob);
+            link.click();
+            URL.revokeObjectURL(link.href);
+        });
+
+        // Disable download button if textarea is empty
+        editor.on("change", () => {
+            const code = editor.getValue();
+            if (code.trim() === "") {
+                document.querySelector("#DownloadButton").setAttribute("disabled", "true");
+            } else {
+                document.querySelector("#DownloadButton").removeAttribute("disabled");
             }
         });
     </script>

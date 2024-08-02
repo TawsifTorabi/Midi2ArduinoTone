@@ -1,0 +1,243 @@
+/* @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap'); */
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(asset/PressStart2P-Regular.ttf) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(asset/PressStart2P-Regular.ttf) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(asset/PressStart2P-Regular.ttf) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(asset/PressStart2P-Regular.ttf) format('woff2');
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(asset/PressStart2P-Regular.ttf) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+html{
+  overflow: hidden; /* Disable scrolling */
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Style the header */
+  header {
+    background-color: #f7d51d;
+    border-bottom: 10px solid #e59400;
+    border-right: 10px solid #e59400;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+    /* background-image: url("asset/retro-cyberpunk-style-80s-game-scene-pixel-art-8-bit-sci-fi-background-v_1772414jpg!bw700.jpg"); */
+    background-size: cover;
+  }
+  
+  .headerCont{
+  /* background: linear-gradient(#00000047, black, transparent); */
+  /* background: transparent; */
+  color: black;
+  }
+
+  
+  /* Container for flexboxes */
+  section {
+    display: -webkit-flex;
+    display: flex;
+  }
+  
+  /* Style the navigation menu */
+  nav {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    background: #ffffff;
+    padding: 20px;
+    background-size: cover;
+    border-right: 10px solid #212529;
+    border-bottom: 10px solid #717171;
+    color: white;
+  }
+  
+  /* Style the list inside the menu */
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Style the content */
+  article {
+    -webkit-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+    background-color: #f1f1f1;
+    padding: 10px;
+  }
+  
+  /* Style the footer */
+  footer {
+    background-color: #92cc41;
+    padding: 10px;
+    border-bottom: 10px solid #4aa52e;
+    border-right: 10px solid #4aa52e;
+    text-align: center;
+    color: white;
+  }
+  
+  /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+  @media (max-width: 600px) {
+    section {
+      -webkit-flex-direction: column;
+      flex-direction: column;
+    }
+  }
+
+body{
+  /* font-family: "VT323", monospace; */
+  background: #ffffff;
+  color: #4c4c4c;
+  /* text-shadow: 1px 1px 3px #00ffbb73; */
+}
+
+h1{
+    font-size: 20px;
+}
+
+.creditTop{
+    /* padding: 20px; */
+    margin-right: -225px;
+    margin-top: -3px;
+    display: flow;
+    font-size: 11px;
+}
+
+#FileDrop {
+    position: relative;
+    width: 93%;
+    height: 100px;
+    border: 5px dashed black;
+    color: black;
+    margin: 20px auto;
+}
+
+#FileDrop.Hover {
+    background-color: black;
+    color: white;
+}
+
+#FileDrop input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    left: 0px;
+    top: 0px;
+}
+
+#FileDrop #Text {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    left: 0px;
+    top: 50%;
+    transform: translate(0, -50%);
+    text-align: center;
+}
+
+textarea {
+    font-family: monospace;
+    height: 300px;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    float: left;
+}
+
+#Results {
+    position: relative;
+    width: 100%;
+    margin: 10px auto;
+    font-family: "Press Start 2P";
+}
+
+.CodeMirror{
+    font-family: "Press Start 2P";
+    font-size: 12px; 
+}
+
+#notificationContainer{
+    color: black;
+    position: absolute;
+    top: 13%;
+    right: -2px;
+    z-index: 999;
+}
+
+#Description {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    height: 40px;
+    font-size: 13px;
+    margin: 29px auto -10px auto;
+}
+
+#PlayButton, #DownloadButton, #CopyButton, #URLButton {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+#trackList {
+    max-height: 90%; /* Adjust height as needed */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    list-style-type: none;
+}
+#trackList li {
+    margin-bottom: 10px;
+    border-bottom: 1px dotted black;
+}
+#trackList li a {
+    text-decoration: none;
+    color: #000;
+}
+#trackList li a:hover {
+    text-decoration: underline;
+}

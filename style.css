@@ -16,6 +16,7 @@
     color: white;
     /* background-image: url("asset/retro-cyberpunk-style-80s-game-scene-pixel-art-8-bit-sci-fi-background-v_1772414jpg!bw700.jpg"); */
     background-size: cover;
+    display: flex;
   }
   
   .headerCont{
@@ -44,6 +45,26 @@
     border-right: 10px solid #212529;
     border-bottom: 10px solid #717171;
     color: white;
+  }
+
+  .header_1{
+    display: inline-flex;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 6;
+    padding: 20px;
+    background-size: cover;
+    border-right: 5px dashed #212529;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: center;
+  }
+  .header_2{
+    display: inline-flex;
+    -webkit-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+    padding: 10px;
   }
   
   /* Style the list inside the menu */
@@ -74,6 +95,22 @@
   /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
   @media (max-width: 600px) {
     section {
+      -webkit-flex-direction: column;
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 750px) {
+    header {
+      -webkit-flex-direction: column;
+      flex-direction: column;
+    }
+    .header_1{
+      border-right: none;
+    }
+  }
+  @media (max-width: 1080px) {
+    .header_1 {
       -webkit-flex-direction: column;
       flex-direction: column;
     }

@@ -120,6 +120,7 @@ body{
   /* font-family: "VT323", monospace; */
   background: #ffffff;
   color: #4c4c4c;
+  overflow-x: hidden;
   /* text-shadow: 1px 1px 3px #00ffbb73; */
 }
 
